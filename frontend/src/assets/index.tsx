@@ -1,0 +1,11 @@
+export { ReactComponent as IconHome } from "./home.svg";
+export { ReactComponent as IconUser } from "./user.svg";
+export { ReactComponent as IconStart } from "./start.svg";
+export { ReactComponent as IconHistory } from "./history.svg";
+export { ReactComponent as IconSYoutube } from "./suscribe-youtube.svg";
+export { ReactComponent as IconDark } from "./dark.svg";
+export { ReactComponent as IconBurger } from "./burger.svg";
+export { ReactComponent as IconUpload } from "./upload.svg";
+export { ReactComponent as IconAlert } from "./alert.svg";
+export { ReactComponent as IconArrowDown } from "./arrow-down.svg";
+export { ReactComponent as IconLoadMore } from "./load-more.svg";

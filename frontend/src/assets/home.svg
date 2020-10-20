@@ -1,0 +1,13 @@
+<svg width="20" height="17" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path id="a" d="M13 22v-6h4v6h5v-8h3L15 5 5 14h3v8z" />
+</defs>
+<g transform="translate(-5 -5)" fill="none" fillRule="evenodd">
+<mask id="b" fill="currentColor">
+ <use href="#a" />
+</mask>
+<g mask="url(#b)" fill="currentColor">
+<path d="M2 2h26v26H2z" />
+</g>
+</g>
+</svg>

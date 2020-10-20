@@ -5,6 +5,7 @@ import Fotter from "./components/navigation/footer";
 import NavBar from "./components/navigation/navbar/navbar";
 import Sider from "./components/navigation/sider";
 import EmpyScreen from "./components/screens/empty";
+import MainScreen from "./components/screens/main";
 
 const App = (props: any) => (
   <React.Fragment>
@@ -12,7 +13,7 @@ const App = (props: any) => (
       <ButtonFloat />
       <NavBar />
       <Sider>
-        <EmpyScreen />
+        <MainScreen />
         <Fotter />
       </Sider>
     </Wrapper>

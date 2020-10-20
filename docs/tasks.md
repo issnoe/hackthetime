@@ -1,7 +1,6 @@
 # Tasks
 
 - Apply this
-  - Use Typescript vs flow
   - jest and other
   - contextapi or redux
   - redux hooks or redux standar
