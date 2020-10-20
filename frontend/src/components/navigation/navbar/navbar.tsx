@@ -1,7 +1,9 @@
 import React from "react";
 
-import Burger from "../basic/burger";
-import Search from "../basic/search";
+import Burger from "./burger";
+import LinkItem from "./link-item";
+import Search from "./search";
+
 const NavBar = () => (
   <div className="header">
     <div className="header-left">
@@ -9,9 +11,9 @@ const NavBar = () => (
       <Search />
     </div>
     <div className="header-menu">
-      <div className="menu-item active">Home</div>
-      <div className="menu-item">Categories</div>
-      <div className="menu-item notify">Subscriptions</div>
+      <LinkItem name="Home" classname="active" />
+      <LinkItem name="Categories" />
+      <LinkItem name="Suscriptions" classname="notify" />
     </div>
     <div className="user-settings">
       <button className="button">

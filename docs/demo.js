@@ -16,8 +16,8 @@ const Wrapper = styled.section`
 
 const Button = styled.button`
   /* Adapt the colors based on primary prop */
-  background: ${(props) => (props.primary ? "palevioletred" : "white")};
-  color: ${(props) => (props.primary ? "white" : "palevioletred")};
+  background: ${(props: any) => (props.primary ? "palevioletred" : "white")};
+  color: ${(props: any) => (props.primary ? "white" : "palevioletred")};
 
   font-size: 1em;
   margin: 1em;
@@ -39,19 +39,19 @@ const StyledLink = styled(Link)`
 const Input = styled.input`
   padding: 0.5em;
   margin: 0.5em;
-  color: ${(props) => props.inputColor || "palevioletred"};
+  color: ${(props: any) => props.inputColor || "palevioletred"};
   background: papayawhip;
   border: none;
   border-radius: 3px;
 `;
 
-const Input2 = styled.input.attrs((props) => ({
+const Input2 = styled.input.attrs((props: any) => ({
   type: "text",
   size: props.size || "1em",
 }))`
   border: 2px solid palevioletred;
-  margin: ${(props) => props.size};
-  padding: ${(props) => props.size};
+  margin: ${(props: any) => props.size};
+  padding: ${(props: any) => props.size};
 `;
 
 // Input's attrs will be applied first, and then this attrs obj

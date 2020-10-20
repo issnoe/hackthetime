@@ -1,6 +1,6 @@
 import React from "react";
 
-const Sider = (props) => (
+const Sider = (props: any) => (
   <div className="wrapper">
     <div className="left-side">
       <div className="side-wrapper">

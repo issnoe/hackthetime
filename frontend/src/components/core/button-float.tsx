@@ -1,7 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 
-const Button = (props) => (
+const ButtonFloat = (props: any) => (
   <div className="dark-light">
     <svg
       viewBox="0 0 24 24"
@@ -16,4 +15,4 @@ const Button = (props) => (
   </div>
 );
 
-export default Button;
+export default ButtonFloat;

@@ -12,7 +12,7 @@ const Burger = () => (
     >
       <path d="M3 12h18M3 6h18M3 18h18" />
     </svg>
-    <div className="logo"></div>
+    {/* <div className="logo"></div> */}
   </React.Fragment>
 );
 export default Burger;
