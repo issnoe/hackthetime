@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ButtonFloat from "./components/core/button-float";
 import Wrapper from "./components/core/wrapper";
 import Fotter from "./components/navigation/footer";
@@ -7,16 +7,19 @@ import Sider from "./components/navigation/sider";
 import EmpyScreen from "./components/screens/empty";
 import MainScreen from "./components/screens/main";
 
-const App = (props: any) => (
-  <React.Fragment>
-    <Wrapper>
-      <ButtonFloat />
-      <NavBar />
-      <Sider>
-        <MainScreen />
-        <Fotter />
-      </Sider>
-    </Wrapper>
-  </React.Fragment>
-);
+const App = (props: any) => {
+  const [toogle, toogleSider] = useState(true);
+  return (
+    <React.Fragment>
+      <Wrapper>
+        <ButtonFloat />
+        <NavBar callback={() => toogleSider(!toogle)} />
+        <Sider toogle={toogle}>
+          <MainScreen />
+          <Fotter />
+        </Sider>
+      </Wrapper>
+    </React.Fragment>
+  );
+};
 export default App;

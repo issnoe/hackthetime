@@ -5,10 +5,10 @@ import Burger from "./burger";
 import LinkItem from "./link-item";
 import Search from "./search";
 
-const NavBar = () => (
+const NavBar = (props: any) => (
   <div className="header">
     <div className="header-left">
-      <Burger />
+      <Burger callback={props.callback} />
       <Search />
     </div>
     <div className="header-menu">

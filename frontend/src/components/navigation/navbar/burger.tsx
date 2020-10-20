@@ -1,9 +1,9 @@
 import React from "react";
 import { IconBurger } from "../../../assets";
 
-const Burger = () => (
+const Burger = (props: any) => (
   <React.Fragment>
-    <IconBurger />
+    <IconBurger onClick={props.callback} />
     {/* <div className="logo"></div> */}
   </React.Fragment>
 );

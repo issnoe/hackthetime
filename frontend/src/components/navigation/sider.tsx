@@ -1,6 +1,6 @@
 import src from "*.bmp";
 import { type } from "os";
-import React from "react";
+import React, { useState } from "react";
 import {
   IconHistory,
   IconHome,
@@ -26,67 +26,74 @@ const users: Users[] = [
   },
 ];
 
-const Sider = (props: any) => (
-  <div className="wrapper">
-    <div className="left-side">
-      <div className="side-wrapper">
-        <div className="side-menu">
-          <a href="#">
-            <IconHome />
-            Home
-          </a>
-          <a href="#">
-            <IconUser />
-            My channel
-          </a>
-          <a href="#">
-            <IconStart></IconStart>
-            Popular video
-          </a>
-          <a href="#">
-            <IconSYoutube />
-            Subscriptions
-          </a>
-          <a href="#">
-            <IconHistory />
-            History views
-          </a>
-          <a href="#">Watch Later</a>
-          <a href="#">Liked Videos</a>
-          <a href="#">Playlists</a>
-        </div>
-      </div>
-      <div className="side-wrapper">
-        <div className="side-menu">
-          <div className="side-title">Subscriptions</div>
-          {users &&
-            users.map((item) => (
-              <ListItemImage name={item.name} src={item.src}></ListItemImage>
-            ))}
+const Sider = (props: any) => {
+  return (
+    <div className="wrapper">
+      {props.toogle && (
+        <div className="left-side">
+          <div className="side-wrapper">
+            <div className="side-menu">
+              <a href="#">
+                <IconHome />
+                Home
+              </a>
+              <a href="#">
+                <IconUser />
+                My channel
+              </a>
+              <a href="#">
+                <IconStart></IconStart>
+                Popular video
+              </a>
+              <a href="#">
+                <IconSYoutube />
+                Subscriptions
+              </a>
+              <a href="#">
+                <IconHistory />
+                History views
+              </a>
+              <a href="#">Watch Later</a>
+              <a href="#">Liked Videos</a>
+              <a href="#">Playlists</a>
+            </div>
+          </div>
+          <div className="side-wrapper">
+            <div className="side-menu">
+              <div className="side-title">Subscriptions</div>
+              {users &&
+                users.map((item) => (
+                  <ListItemImage
+                    name={item.name}
+                    src={item.src}
+                  ></ListItemImage>
+                ))}
 
-          <button className="button show-more">Show More</button>
+              <button className="button show-more">Show More</button>
+            </div>
+          </div>
+          <div className="side-wrapper">
+            <div className="side-menu">
+              <div className="side-title">Popular Channels</div>
+              <a href="#">
+                <IconHome />
+                Music Channels
+              </a>
+              <a href="#">Baby Channel</a>
+              <a href="#">Games Channel</a>
+              <a href="#">Fitness Channel</a>
+              <a href="#">Food Channels</a>
+              <a href="#">Economy Channels</a>
+              <a href="#">Motorcycle Channels</a>
+              <a href="#">Humor Channels</a>
+              <button className="button show-more">Show More</button>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="side-wrapper">
-        <div className="side-menu">
-          <div className="side-title">Popular Channels</div>
-          <a href="#">
-            <IconHome />
-            Music Channels
-          </a>
-          <a href="#">Baby Channel</a>
-          <a href="#">Games Channel</a>
-          <a href="#">Fitness Channel</a>
-          <a href="#">Food Channels</a>
-          <a href="#">Economy Channels</a>
-          <a href="#">Motorcycle Channels</a>
-          <a href="#">Humor Channels</a>
-          <button className="button show-more">Show More</button>
-        </div>
-      </div>
+      )}
+      <div className="main-container">{props.children}</div>
     </div>
-    <div className="main-container">{props.children}</div>
-  </div>
-);
+  );
+};
 
 export default Sider;
