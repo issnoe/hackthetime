@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style.css";
 
-type Props = {
+export type Props = {
   name: string;
   color: string;
   timeToDo?: number;
@@ -13,10 +13,10 @@ type PPin = {
 const Pin = ({ color }: PPin) => (
   <span
     style={{
-      width: "10px",
-      height: "10px",
+      width: "5px",
+      height: "5px",
       borderRadius: " 50%",
-      padding: "10px",
+      padding: "7px",
       backgroundColor: color,
     }}
   ></span>
