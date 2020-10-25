@@ -256,6 +256,13 @@ body {
   font-size: 15px;
   white-space: nowrap;
 }
+
+.side-menu a:hover {
+  /* background-color: #969494; */
+  box-shadow: beige;
+  border-radius: 10px 10px 10px 10px;
+}
+
 .side-menu a:not(:last-child) {
   margin-bottom: 20px;
 }

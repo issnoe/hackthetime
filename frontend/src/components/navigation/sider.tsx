@@ -9,6 +9,7 @@ import {
   IconUser,
 } from "../../assets";
 import ListItemImage from "../core/list-item";
+import Link from "../core/link";
 
 type Users = {
   name: string;
@@ -33,60 +34,13 @@ const Sider = (props: any) => {
         <div className="left-side">
           <div className="side-wrapper">
             <div className="side-menu">
-              <a href="#">
-                <IconHome />
-                Home
-              </a>
-              <a href="#">
-                <IconUser />
-                My channel
-              </a>
-              <a href="#">
-                <IconStart></IconStart>
-                Popular video
-              </a>
-              <a href="#">
-                <IconSYoutube />
-                Subscriptions
-              </a>
-              <a href="#">
-                <IconHistory />
-                History views
-              </a>
-              <a href="#">Watch Later</a>
-              <a href="#">Liked Videos</a>
-              <a href="#">Playlists</a>
-            </div>
-          </div>
-          <div className="side-wrapper">
-            <div className="side-menu">
-              <div className="side-title">Subscriptions</div>
-              {users &&
-                users.map((item) => (
-                  <ListItemImage
-                    name={item.name}
-                    src={item.src}
-                  ></ListItemImage>
-                ))}
+              <div className="side-title">Projetcs</div>
+              <div className="nose">
+                <Link name="eNa" color="tomato" />
+                <Link name="matersoft" color="blue" />
+              </div>
 
-              <button className="button show-more">Show More</button>
-            </div>
-          </div>
-          <div className="side-wrapper">
-            <div className="side-menu">
-              <div className="side-title">Popular Channels</div>
-              <a href="#">
-                <IconHome />
-                Music Channels
-              </a>
-              <a href="#">Baby Channel</a>
-              <a href="#">Games Channel</a>
-              <a href="#">Fitness Channel</a>
-              <a href="#">Food Channels</a>
-              <a href="#">Economy Channels</a>
-              <a href="#">Motorcycle Channels</a>
-              <a href="#">Humor Channels</a>
-              <button className="button show-more">Show More</button>
+              <button className="button show-more">+ Add project</button>
             </div>
           </div>
         </div>
