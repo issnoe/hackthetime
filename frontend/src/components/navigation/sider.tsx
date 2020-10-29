@@ -9,7 +9,8 @@ import {
   IconUser,
 } from "../../assets";
 import ListItemImage from "../core/list-item";
-import Link, { Props as LinkProps } from "../core/link";
+import Link, { LinkProps } from "../core/link/link.c";
+import { projects } from "../../data/proyects";
 
 type Users = {
   name: string;
@@ -25,19 +26,6 @@ const users: Users[] = [
   {
     name: "Luis",
   },
-];
-
-const projects: LinkProps[] = [
-  { name: "Matersoft", color: "tomato", timeToDo: 100, countPomodoros: 20 },
-  { name: "ENa", color: "orange ", timeToDo: 1, countPomodoros: 10 },
-  { name: "Tesis", color: "dodgerblue", timeToDo: 1, countPomodoros: 10 },
-  { name: "Aptude", color: "MediumSeaGreen", timeToDo: 1, countPomodoros: 10 },
-  { name: "Kidzzer", color: "SlateBlue", timeToDo: 1, countPomodoros: 10 },
-  { name: "Documentos", color: "Violet", timeToDo: 1, countPomodoros: 5 },
-  { name: "Tramites", color: "LightGray", timeToDo: 1, countPomodoros: 5 },
-  { name: "KBX", color: "tomato", timeToDo: 1, countPomodoros: 5 },
-  { name: "Learn", color: "tomato", timeToDo: 1, countPomodoros: 5 },
-  { name: "Soles", color: "tomato", timeToDo: 100, countPomodoros: 5 },
 ];
 
 const Sider = (props: any) => {
