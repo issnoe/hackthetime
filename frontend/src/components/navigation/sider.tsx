@@ -10,7 +10,6 @@ import {
 } from "../../assets";
 import ListItemImage from "../core/list-item";
 import Link, { LinkProps } from "../core/link/link.c";
-import { projects } from "../../data/proyects";
 
 type Users = {
   name: string;
@@ -20,15 +19,20 @@ type Users = {
 const users: Users[] = [
   {
     name: "Example",
-    src:
-      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80",
+    src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80",
   },
   {
     name: "Luis",
   },
 ];
 
-const Sider = (props: any) => {
+type SiderProps = {
+  projects: Array<any>;
+  toogle: boolean;
+  children: any;
+};
+
+const Sider = (props: SiderProps) => {
   return (
     <div className="wrapper">
       {props.toogle && (
@@ -37,7 +41,7 @@ const Sider = (props: any) => {
             <div className="side-menu">
               <div className="side-title">Projetcs</div>
               <div className="nose">
-                {projects.map((project) => (
+                {props.projects.map((project) => (
                   <Link {...project} />
                 ))}
               </div>

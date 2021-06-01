@@ -1,0 +1,30 @@
+toaster {
+  --toaster-container-bg-color: white;
+}
+
+.toaster-container {
+  position: fixed;
+  display: flex;
+  bottom: 30px;
+  right: 12px;
+  background-color: var(--toaster-container-bg-color);
+  box-shadow: -1px 3px 8px -1px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  margin-left: 14px;
+  z-index: 10;
+  transition: 0.8s;
+  min-width: 200px;
+  max-width: 400px;
+}
+.toaster-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.show {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
+}

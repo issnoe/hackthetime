@@ -19,12 +19,18 @@
   --main-color: #fefffd;
   --body-color: #dddee0;
 }
+/* * {
+    outline: none;
+  box-sizing: border-box; 
+} */
 * {
-  outline: none;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 
-img {
+/* img {
   max-width: 100%;
 }
 
@@ -41,7 +47,7 @@ body {
   margin: 0;
   font-weight: 600;
   min-height: -webkit-fill-available;
-}
+} */
 
 .video-app {
   display: flex;

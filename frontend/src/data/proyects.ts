@@ -2,12 +2,13 @@ import { LinkProps } from "../components/core/link/link.c";
 
 export const projects: LinkProps[] = [
   {
-    name: "Matersoft hsghsg s ghsh",
+    name: "Matersoft",
     color: "tomato",
     timeToDo: 100,
+
     countPomodoros: 20,
   },
-  { name: "ENa", color: "orange ", timeToDo: 1, countPomodoros: 10 },
+  { name: "ENA", color: "orange ", timeToDo: 1, countPomodoros: 10 },
   { name: "Tesis", color: "dodgerblue", timeToDo: 1, countPomodoros: 10 },
   { name: "Aptude", color: "MediumSeaGreen", timeToDo: 1, countPomodoros: 10 },
   { name: "Kidzzer", color: "SlateBlue", timeToDo: 1, countPomodoros: 10 },
