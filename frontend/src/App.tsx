@@ -11,6 +11,7 @@ import MainScreen from "./components/screens/main";
 import styled from "styled-components";
 import Toaster from "./components/core/toaster/toaster.c";
 import { projects } from "./data/proyects";
+import { tasks } from "./data/task";
 
 const App = (props: any) => {
   const [toogle, toogleSider] = useState(true);
@@ -21,7 +22,7 @@ const App = (props: any) => {
 
         <NavBar callback={() => toogleSider(!toogle)} />
         <Sider toogle={toogle} projects={projects}>
-          <EmpyScreen />
+          <EmpyScreen tasks={tasks}/>
         </Sider>
       </Wrapper>
       <ButtonFloat />

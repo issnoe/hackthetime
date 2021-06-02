@@ -43,3 +43,43 @@
 .link-badge {
   padding: 2px;
 }
+
+.task {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: black;
+  border-width: 1px;
+  border-style: solid;
+  margin-bottom: 10px;
+}
+
+.example-parent {
+  border: 2px solid #dfa612;
+  color: black;
+  display: flex;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.example-origin {
+  flex-basis: 100%;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.example-draggable {
+  background-color: #4aae9b;
+  font-weight: normal;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.example-dropzone {
+  background-color: #6db65b;
+  flex-basis: 100%;
+  flex-grow: 1;
+  padding: 10px;
+}
