@@ -1,5 +1,8 @@
 # Tasks
-
+- API 
+    - Move code from /Users/issnoe/Matersoft/chat-o-matic/server/package-lock.json
+    - Graphql setup
+    - 
 - Apply this
   - Use Typescript vs flow
   - jest and other

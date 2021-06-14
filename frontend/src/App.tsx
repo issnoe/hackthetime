@@ -12,20 +12,12 @@ import styled from "styled-components";
 import Toaster from "./components/core/toaster/toaster.c";
 import { projects } from "./data/proyects";
 import { tasks } from "./data/task";
-
+import Chat from "./Chat";
 const App = (props: any) => {
   const [toogle, toogleSider] = useState(true);
   return (
     <React.Fragment>
-      <Wrapper>
-        {/* <MainScreen></MainScreen> */}
-
-        <NavBar callback={() => toogleSider(!toogle)} />
-        <Sider toogle={toogle} projects={projects}>
-          <EmpyScreen tasks={tasks}/>
-        </Sider>
-      </Wrapper>
-      <ButtonFloat />
+   <Chat />
     </React.Fragment>
   );
 };
