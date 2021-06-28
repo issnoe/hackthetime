@@ -10,7 +10,8 @@
   - redux hooks or redux standar
   - deploy on next dotnet nodejs
   - electron
-
+- UI
+    - Timer 
 ## Typescript React
 
 [source:https://create-react-app.dev/docs/adding-typescript/]
@@ -40,4 +41,13 @@ https://www.pinterest.com.mx/pin/625437466981528540/
 
 ## Find resources
 
-Encuentar cosas en CodePen, CodeSandbox, Glitch o Stackblitz.
+Encuentar cosas en 
+CodePen
+CodeSandbox
+Glitch
+Stackblitz.
+
+## Hooks
+
+### Interval hook
+

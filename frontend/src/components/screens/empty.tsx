@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import Board from "../core/board/board.c";
-import Link from "../core/link/link.c";
-import Toaster from "../core/toaster/toaster.c";
-import App2 from "../drag-list/App";
+import React, { useState } from 'react';
+import Board from '../core/board/board.c';
+import Link from '../core/link/link.c';
+import Toaster from '../core/toaster/toaster.c';
+import App2 from '../drag-list/App';
+import StopWatch from '../core/stop-watch/stop-watch.c';
 export type ITaskList = {
   tasks: any[];
 };
