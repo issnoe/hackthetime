@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { TimerDetails } from '../../../contexts/Timer';
 import { useInterval } from '../custom-hooks';
 import './stop-watch.css';
 const SETTIME = 1800;
 const ONE_SECOND = 1000;
 export type StopWatchProps = {
   name?: string;
-  size: string;
+  size?: string;
 };
 
-const StopWatch = ({ name, size }: StopWatchProps) => {
+const StopWatch = () => {
   const [seconds, setSeconds] = useState(SETTIME);
   const [delay, setDelay] = useState(ONE_SECOND);
+
+  const { sizeStopWatcher, changeSize } = useContext(TimerDetails);
 
   useInterval(() => {
     setSeconds(seconds - 1);
@@ -31,12 +34,20 @@ const StopWatch = ({ name, size }: StopWatchProps) => {
 
   return (
     <div>
-      <div className={`clock ${size} onwork`}>
+      <div className={`clock ${sizeStopWatcher} onwork`}>
         {transformSecondsToClock(seconds)}
-        <button className="button-collapce" onClick={() => {}}>
+        <button
+          className="button-collapce"
+          onClick={() => {
+            const s = sizeStopWatcher === 'small' ? 'full-screen' : 'small';
+            console.log(sizeStopWatcher, s);
+
+            changeSize(s);
+          }}
+        >
           collapce
         </button>
-        {/*  <button
+        {/*   <button
           onClick={() => {
             setDelay(ONE_SECOND);
           }}

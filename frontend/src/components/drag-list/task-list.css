@@ -32,8 +32,8 @@
   display: flex;
   align-items: center;
   border: solid 2px #d0d0d0;
-  border-radius: .2em;
-  padding: .5em .8em .5em .5em;
+  border-radius: 0.2em;
+  padding: 0.5em 0.8em 0.5em 0.5em;
   margin-bottom: 1em;
 }
 
@@ -49,12 +49,36 @@
   width: 2em;
   height: 2em;
   background-color: #e8e8e8;
-  padding: .5em;
-  margin-right: .5em;
+  padding: 0.5em;
+  margin-right: 0.5em;
 }
 
 .characters-thumb img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.add-input {
+  width: 80%;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.pomodoro-button {
+  display: inline-block;
+  vertical-align: top;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25px 25px;
+}
+
+.marked {
+  background-image: url(../../assets/detail-pomo-estimation.png);
+}
+.nomarked {
+  background-image: url(../../assets/detail-pomo-blank.png);
 }

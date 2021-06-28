@@ -13,24 +13,26 @@ import Toaster from './components/core/toaster/toaster.c';
 import { projects } from './data/proyects';
 import { tasks } from './data/task';
 import StopWatch from './components/core/stop-watch/stop-watch.c';
+import { TimerDetailsProvider } from './contexts/Timer';
 
 const App = (props: any) => {
   const [toogle, toogleSider] = useState(true);
-  const sizeStopWatcher = 'small';
+  const [sizeStopWatcher, setSizeStopWatcher] = useState('small');
+  const changeSize = (size) => setSizeStopWatcher(size);
+  const stopWatch = <StopWatch />;
   return (
     <>
-      {/* <StopWatch size={'full-screen'}></StopWatch> */}
-      <Wrapper>
-        {/*    {<MainScreen></MainScreen>} */}
-
-        <NavBar callback={() => toogleSider(!toogle)} />
-        <StopWatch size={sizeStopWatcher}></StopWatch>
-        <Sider toogle={toogle} projects={projects}>
-          <EmpyScreen tasks={tasks} />
-        </Sider>
-      </Wrapper>
-
-      <ButtonFloat />
+      <TimerDetailsProvider value={{ sizeStopWatcher, changeSize }}>
+        {stopWatch}
+        <Wrapper>
+          {/*    {<MainScreen></MainScreen>} */}
+          <NavBar callback={() => toogleSider(!toogle)} />
+          <Sider toogle={toogle} projects={projects}>
+            <EmpyScreen tasks={tasks} />
+          </Sider>
+        </Wrapper>
+        <ButtonFloat />
+      </TimerDetailsProvider>
     </>
   );
 };
