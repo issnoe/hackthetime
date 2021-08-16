@@ -20,6 +20,7 @@ const App = (props: any) => {
   const [sizeStopWatcher, setSizeStopWatcher] = useState('small');
   const changeSize = (size) => setSizeStopWatcher(size);
   const stopWatch = <StopWatch />;
+
   return (
     <>
       <TimerDetailsProvider value={{ sizeStopWatcher, changeSize }}>
