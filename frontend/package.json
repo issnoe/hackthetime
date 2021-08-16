@@ -2,6 +2,13 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "main": "public/electron.js",
+  "author": "issnoe",
+  "description": "Wishplash app to complete your goals",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/issnoe/hackthetime"
+  },
   "dependencies": {
     "@apollo/client": "^3.0.2",
     "@testing-library/jest-dom": "^4.2.4",
@@ -10,6 +17,9 @@
     "@types/jest": "^24.9.1",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "concurrently": "^6.2.1",
+    "electron-is-dev": "^2.0.0",
+    "electron-log": "^3.0.8",
     "graphql": "^15.3.0",
     "react": "^16.14.0",
     "react-beautiful-dnd": "^13.1.0",
@@ -19,13 +29,27 @@
     "shards-react": "^1.0.3",
     "styled-components": "^5.2.0",
     "subscriptions-transport-ws": "^0.9.17",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "wait-on": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.4",
+    "concurrently": "4.1.2",
+    "electron": "6.0.11",
+    "electron-builder": "^21.2.0",
+    "prettier": "^1.4.4",
+    "react-scripts": "3.1.2",
+    "wait-on": "3.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start:electron": "concurrently \"cross-env BROWSER=none npm react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test --env=jsdom",
+    "react-eject": "react-scripts eject",
+    "electron-build": "electron-builder",
+    "release": "npm react-build && electron-builder --publish=always",
+    "build": "npm react-build && npm electron-build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,7 +66,11 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@types/styled-components": "^5.1.4"
-  }
+ 
+  "build": {
+    "publish": {
+      "provider": "github"
+    }
+  },
+  "homepage": "./"
 }
