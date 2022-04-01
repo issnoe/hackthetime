@@ -13,17 +13,44 @@ import Toaster from './components/core/toaster/toaster.c';
 import { projects } from './data/proyects';
 import { tasks } from './data/task';
 import StopWatch from './components/core/stop-watch/stop-watch.c';
+import { useEffect } from 'react';
 import { TimerDetailsProvider } from './contexts/Timer';
 
 const App = (props: any) => {
   const [toogle, toogleSider] = useState(true);
   const [sizeStopWatcher, setSizeStopWatcher] = useState('small');
   const changeSize = (size) => setSizeStopWatcher(size);
+  const whatAreYouDoing = (payload) => {
+    if (payload.action === "NEW") {
+      localStorage.setItem("task", payload.taskId);
+    }
+    if (payload.action === "UPDATE") {
+
+      const storege = localStorage.getItem("list");
+      const id = localStorage.getItem("task");
+
+      if (storege) {
+        const lista = JSON.parse(storege);
+
+        const done = lista.find((element) => {
+          if (element.id === id) {
+            return element
+          }
+        })
+        const storeOldDoneList = localStorage.getItem("done");
+        let storeOldDoneListJson = []
+        if (storeOldDoneList) {
+          storeOldDoneListJson = JSON.parse(storeOldDoneList);
+        }
+        localStorage.setItem("done", JSON.stringify([{ time: new Date, ...done }, ...storeOldDoneListJson]))
+      }
+    }
+  };
   const stopWatch = <StopWatch />;
 
   return (
     <>
-      <TimerDetailsProvider value={{ sizeStopWatcher, changeSize }}>
+      <TimerDetailsProvider value={{ sizeStopWatcher, changeSize, whatAreYouDoing }}>
         {stopWatch}
         <Wrapper>
           {/*    {<MainScreen></MainScreen>} */}

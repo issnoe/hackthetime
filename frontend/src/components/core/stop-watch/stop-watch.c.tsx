@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { TimerDetails } from '../../../contexts/Timer';
+import { PlayBeep } from '../../../libs/Sound';
 import { useInterval } from '../custom-hooks';
 import './stop-watch.css';
 const SETTIME = 1800;
@@ -13,10 +14,20 @@ const StopWatch = () => {
   const [seconds, setSeconds] = useState(SETTIME);
   const [delay, setDelay] = useState(ONE_SECOND);
 
-  const { sizeStopWatcher, changeSize } = useContext(TimerDetails);
+  const { sizeStopWatcher, changeSize, whatAreYouDoing } = useContext(TimerDetails);
 
   useInterval(() => {
     setSeconds(seconds - 1);
+    document.title = transformSecondsToClock(seconds)
+    if (seconds < 1) {
+      PlayBeep()
+
+    }
+    if (seconds == 0) {
+      setDelay(ONE_SECOND);
+      setSeconds(SETTIME);
+      whatAreYouDoing({ action: "UPDATE" })
+    }
   }, delay);
 
   /**
@@ -47,7 +58,7 @@ const StopWatch = () => {
         >
           collapce
         </button>
-        {/*   <button
+        <button
           onClick={() => {
             setDelay(ONE_SECOND);
           }}
@@ -68,10 +79,12 @@ const StopWatch = () => {
           }}
         >
           STOP
-        </button> */}
+        </button>
       </div>
     </div>
   );
 };
 
 export default StopWatch;
+
+

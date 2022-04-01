@@ -1,11 +1,12 @@
-import { createContext } from 'react';
+import React, { createContext } from "react";
 const SETTIME = 1800;
 
-// @ts-ignore
 export const TimerDetails = createContext({
-  sizeStopWatcher: '',
-  changeSize: (value) => {},
+  taskID: "",
+  sizeStopWatcher: "",
   seconds: SETTIME,
+  changeSize: (value) => { },
+  whatAreYouDoing: (value) => { },
 });
 
 export function TimerDetailsProvider(props) {

@@ -1,21 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import './task-list.css';
+import React, { useState, useEffect, useContext } from "react";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { TimerDetails } from "../../contexts/Timer";
+import "./task-list.css";
 
 const SHOW_BUTTON_POMODORO = 5;
+interface ITasks {
+  description: string
+  pomodoro: any
+  project: any
+  date: any
+  id: any
+}
 const initialTask = {
-  description: '',
+  description: "",
   pomodoro: 1,
-  project: 'A',
+  project: "A",
   date: null,
-  id: '',
+  id: "",
 };
 function TasksList() {
   const [characters, updateCharacters] = useState([]);
   const [task, setTask] = useState(initialTask);
+  const { whatAreYouDoing } = useContext(TimerDetails);
 
   useEffect(() => {
-    const storege = localStorage.getItem('list');
+    const storege = localStorage.getItem("list");
     if (storege) {
       const lista = JSON.parse(storege);
       updateCharacters(lista);
@@ -35,15 +44,15 @@ function TasksList() {
     items.splice(result.destination.index, 0, reorderedItem);
 
     updateCharacters(items);
-    localStorage.setItem('list', JSON.stringify(items));
+    localStorage.setItem("list", JSON.stringify(items));
   }
 
   const renderButtonPomodoros = (task, readOnly = false) => {
-    let renderElement = [];
+    let renderElement: any = [];
     const displayButtons = readOnly ? task.pomodoro : SHOW_BUTTON_POMODORO;
     for (let index = 0; index < displayButtons; index++) {
-      const isMarked = index < task.pomodoro ? 'marked' : 'nomarked';
-      let element = [];
+      const isMarked = index < task.pomodoro ? "marked" : "nomarked";
+      let element: any = [];
       if (readOnly) {
         element = (
           <>
@@ -59,10 +68,10 @@ function TasksList() {
             key={`button-pomodoro-${index}`}
             className={`pomodoro-button ${isMarked}`}
             onClick={() => {
-              if (isMarked === 'marked') {
+              if (isMarked === "marked") {
                 setTask({ ...task, pomodoro: index });
               }
-              if (isMarked === 'nomarked') {
+              if (isMarked === "nomarked") {
                 setTask({ ...task, pomodoro: index + 1 });
               }
             }}
@@ -79,16 +88,16 @@ function TasksList() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          const id = Math.random(1, 100);
+          const id = new Date().toISOString();
           const task_ = {
             ...task,
-            date: new Date(),
+            date: new Date().toISOString(),
             id,
           };
-          const list = [...characters, task_];
+          const list: any = [...characters, task_];
 
           updateCharacters(list);
-          localStorage.setItem('list', JSON.stringify(list));
+          localStorage.setItem("list", JSON.stringify(list));
           setTask(initialTask);
           //setTask(initialTask);
         }}
@@ -97,9 +106,9 @@ function TasksList() {
           <input
             className="add-input"
             value={task.description}
-            type={'text'}
+            type={"text"}
             onChange={(e) => setTask({ ...task, description: e.target.value })}
-            placeholder={'Add task to Project Name , press [Enter] to save '}
+            placeholder={"Add task to Project Name , press [Enter] to save "}
           ></input>
           {renderButtonPomodoros(task)}
         </div>
@@ -113,14 +122,17 @@ function TasksList() {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {characters.map((task, index) => {
+              {characters.map((task: ITasks, index) => {
                 const { id, description, pomodoro } = task;
-                const d = id.toString();
-                console.log(d);
+                const d = id
                 return (
                   <Draggable key={d} draggableId={d} index={index}>
                     {(provided) => (
                       <li
+                        onDoubleClick={() => {
+                          whatAreYouDoing({ action: "NEW", taskId: task.id })
+                        }}
+                        key={d}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
@@ -142,3 +154,5 @@ function TasksList() {
 }
 
 export default TasksList;
+
+
