@@ -15,6 +15,114 @@ import { tasks } from './data/task';
 import StopWatch from './components/core/stop-watch/stop-watch.c';
 import { useEffect } from 'react';
 import { TimerDetailsProvider } from './contexts/Timer';
+import HighchartsReact from 'highcharts-react-official';
+import Highcharts from 'highcharts'
+
+var gaugeOptions = {
+  chart: {
+    type: 'solidgauge'
+  },
+
+  title: null,
+
+
+};
+
+// The speed gauge
+var chartSpeed = {
+  ...gaugeOptions,
+  yAxis: {
+    min: 0,
+    max: 200,
+    title: {
+      text: 'Speed'
+    }
+  },
+
+  credits: {
+    enabled: false
+  },
+
+  series: [{
+    name: 'Speed',
+    data: [80],
+    dataLabels: {
+      format:
+        '<div style="text-align:center">' +
+        '<span style="font-size:25px">{y}</span><br/>' +
+        '<span style="font-size:12px;opacity:0.4">km/h</span>' +
+        '</div>'
+    },
+    tooltip: {
+      valueSuffix: ' km/h'
+    }
+  }]
+
+}
+
+// The RPM gauge
+var chartRpm = {
+  ...gaugeOptions,
+  yAxis: {
+    min: 0,
+    max: 5,
+    title: {
+      text: 'RPM'
+    }
+  },
+
+  series: [{
+    name: 'RPM',
+    data: [1],
+    dataLabels: {
+      format:
+        '<div style="text-align:center">' +
+        '<span style="font-size:25px">{y:.1f}</span><br/>' +
+        '<span style="font-size:12px;opacity:0.4">' +
+        '* 1000 / min' +
+        '</span>' +
+        '</div>'
+    },
+    tooltip: {
+      valueSuffix: ' revolutions/min'
+    }
+  }]
+
+}
+
+// Bring life to the dials
+/* setInterval(function () {
+  // Speed
+  var point,
+    newVal,
+    inc;
+
+  if (chartSpeed) {
+    point = chartSpeed.series[0].points[0];
+    inc = Math.round((Math.random() - 0.5) * 100);
+    newVal = point.y + inc;
+
+    if (newVal < 0 || newVal > 200) {
+      newVal = point.y - inc;
+    }
+
+    point.update(newVal);
+  }
+
+  // RPM
+  if (chartRpm) {
+    point = chartRpm.series[0].points[0];
+    inc = Math.random() - 0.5;
+    newVal = point.y + inc;
+
+    if (newVal < 0 || newVal > 5) {
+      newVal = point.y - inc;
+    }
+
+    point.update(newVal);
+  }
+}, 2000); */
+
 
 const App = (props: any) => {
   const [toogle, toogleSider] = useState(true);
@@ -45,6 +153,9 @@ const App = (props: any) => {
         localStorage.setItem("done", JSON.stringify([{ time: new Date, ...done }, ...storeOldDoneListJson]))
       }
     }
+    if (payload.action === "UPDATE_STATUS") {
+
+    }
   };
   const stopWatch = <StopWatch />;
 
@@ -57,6 +168,11 @@ const App = (props: any) => {
           <NavBar callback={() => toogleSider(!toogle)} />
           <Sider toogle={toogle} projects={projects}>
             <EmpyScreen tasks={tasks} />
+            <HighchartsReact
+              key={"n"}
+              highcharts={Highcharts}
+              options={gaugeOptions}
+            />
           </Sider>
         </Wrapper>
         <ButtonFloat />

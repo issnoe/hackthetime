@@ -1,8 +1,9 @@
 # Tasks
-- API 
-    - Move code from /Users/issnoe/Matersoft/chat-o-matic/server/package-lock.json
-    - Graphql setup
-    - 
+
+- API
+  - Move code from /Users/issnoe/Matersoft/chat-o-matic/server/package-lock.json
+  - Graphql setup
+  -
 - Apply this
   - Use Typescript vs flow
   - jest and other
@@ -10,8 +11,10 @@
   - redux hooks or redux standar
   - deploy on next dotnet nodejs
   - electron
-- UI
-    - Timer 
+- ´\*\*\*\*´ UI
+  - Timer
+  - List design https://dribbble.com/shots/14440819-KosmoTime-Task-Manager
+
 ## Typescript React
 
 [source:https://create-react-app.dev/docs/adding-typescript/]
@@ -41,7 +44,7 @@ https://www.pinterest.com.mx/pin/625437466981528540/
 
 ## Find resources
 
-Encuentar cosas en 
+Encuentar cosas en
 CodePen
 CodeSandbox
 Glitch
@@ -50,4 +53,3 @@ Stackblitz.
 ## Hooks
 
 ### Interval hook
-
