@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { TimerDetails } from "../../contexts/Timer";
 import { create_UUID } from "../../utils";
-import Checkbox from "../checkbox/Checkbox";
+import Checkbox, { CheckboxCube, CheckboxSwitch } from "../checkbox/Checkbox";
 import styles from './task-list.module.css';
 
 
@@ -209,7 +209,13 @@ function TasksList() {
           {renderButtonPomodoros(task)}
         </div>
       </form>
+      <CheckboxSwitch id="toogle-list" status={true} onChange={() => {
+      }} />
+      <CheckboxCube id="toogle-list-cube" status={true} onChange={() => {
 
+      }} />
+
+      <BoxCheckBox status={true} id={task.id} />
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">
           {(provided) => (
@@ -253,12 +259,14 @@ function TasksList() {
         </Droppable>
 
       </DragDropContext>
-      {characters.filter((e: ITasks) => e.status == true).map((task: ITasks, index) => {
-        const { id, description, pomodoro, status } = task;
-        return <ul className={styles.characters}><BoxElement provided={null} task={task} />
-        </ul>
+      {
+        characters.filter((e: ITasks) => e.status == true).map((task: ITasks, index) => {
+          const { id, description, pomodoro, status } = task;
+          return <ul className={styles.characters}><BoxElement provided={null} task={task} />
+          </ul>
 
-      })}
+        })
+      }
 
     </div >
   );

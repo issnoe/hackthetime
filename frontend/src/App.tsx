@@ -17,6 +17,8 @@ import { useEffect } from 'react';
 import { TimerDetailsProvider } from './contexts/Timer';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts'
+import styles from './styles.module.css'
+import { CheckboxCube } from './components/checkbox/Checkbox';
 
 var gaugeOptions = {
   chart: {
@@ -164,8 +166,30 @@ const App = (props: any) => {
       <TimerDetailsProvider value={{ sizeStopWatcher, changeSize, whatAreYouDoing }}>
         {stopWatch}
         <Wrapper>
+          <div className={styles.wrapper}>
+            <header className={styles.mainhead}>
+              <NavBar callback={() => toogleSider(!toogle)} />
+            </header>
+            <nav className={styles.mainnav}>
+
+              {/*  <ul>
+                <li><a href="">Nav 1</a></li>
+                <li><a href="">Nav 2</a></li>
+                <li><a href="">Nav 3</a></li>
+              </ul> */}
+            </nav>
+            <article className={styles.content}>
+              <EmpyScreen tasks={tasks} />
+            </article>
+            <aside className={styles.side}>
+              {/* Sidebar */}
+            </aside>
+            <div className={styles.ad}>{/* Advertising */}</div>
+            <footer className={styles.mainfooter}>{/* The footer */}</footer> </div>
           {/*    {<MainScreen></MainScreen>} */}
-          <NavBar callback={() => toogleSider(!toogle)} />
+          {/* <NavBar callback={() => toogleSider(!toogle)} />
+
+
           <Sider toogle={toogle} projects={projects}>
             <EmpyScreen tasks={tasks} />
             <HighchartsReact
@@ -173,9 +197,9 @@ const App = (props: any) => {
               highcharts={Highcharts}
               options={gaugeOptions}
             />
-          </Sider>
+          </Sider> */}
         </Wrapper>
-        <ButtonFloat />
+        {/*    <ButtonFloat /> */}
       </TimerDetailsProvider>
     </>
   );

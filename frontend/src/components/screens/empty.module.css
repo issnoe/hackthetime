@@ -1,0 +1,35 @@
+.hero {
+    /* Photo by mnm.all on Unsplash */
+    background: url('https://images.unsplash.com/photo-1518176258769-f227c798150e') center;
+    background-size: cover;
+    padding: 4rem 2rem;
+    /* grid styles */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    align-items: center;
+  }
+  .hero > * {
+    color: white;
+  }
+  
+  .hero > h1 {
+    font-size: 4rem;
+    padding-bottom: 1rem;
+  }
+  
+  .hero > article > p {
+    font-size: 1.5rem;
+    font-weight: 200;
+  }
+  
+  .hero > article > a {
+    padding: 1rem;
+    margin-top: .75rem;
+  }
+  
+  .center{
+    display: grid;
+   /*  padding: 4rem 2rem; */
+    /* grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); */
+    align-items: center;
+  }
