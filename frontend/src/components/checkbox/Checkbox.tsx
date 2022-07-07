@@ -33,10 +33,10 @@ export function CheckboxCubeOld(props: { id: string, status: boolean, onChange: 
 }
 
 export function CheckboxCube(props: { id: string, status: boolean, onChange: () => void }) {
-    return <div style={{ padding: "1rem", background: "gray" }}>
+    return <>
         <label className={styles.buttonbox} htmlFor="toggle" >
             <input id="toggle" className={styles.toggle} type="checkbox" />
             <span className={styles.sliderCube}></span>
         </label>
-    </div >
+    </ >
 }

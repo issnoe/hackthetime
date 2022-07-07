@@ -209,13 +209,15 @@ function TasksList() {
           {renderButtonPomodoros(task)}
         </div>
       </form>
-      <CheckboxSwitch id="toogle-list" status={true} onChange={() => {
-      }} />
-      <CheckboxCube id="toogle-list-cube" status={true} onChange={() => {
 
-      }} />
+      <div style={{ margin: "1rem 2px" }}>
+        <CheckboxCube id="toogle-list-cube" status={true} onChange={() => {
 
-      <BoxCheckBox status={true} id={task.id} />
+        }} />
+      </div>
+
+
+
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="characters">
           {(provided) => (
