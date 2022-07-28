@@ -181,18 +181,15 @@ const App = (props: any) => {
         }
         localStorage.setItem("done", JSON.stringify([{ time: new Date, ...done }, ...storeOldDoneListJson]))
       }
-      toogleSider(! )
+      toogleSider(false)
     }
     if (payload.action === "UPDATE_STATUS") {
 
     }
   };
   const time = useSelector<AppState, any>((state) => state.time);
-  console.log(time);
-
 
   const stopWatch = function () {
-    debugger
     const storeOldDoneList = getCicleStatus();
     return <StopWatch time={time} isRest={isLastTaskRest(storeOldDoneList)} />;
 

@@ -8,8 +8,8 @@ import './stop-watch.css';
  * 1800 => 30 min
  * 300 => 5 min
  */
-const TIME_TASK_FOCUS = 10;// => 30 minutos
-const TIME_REST = 5;
+const TIME_TASK_FOCUS = 1800;// => 30 minutos
+const TIME_REST = 300;
 const ONE_SECOND = 1000;
 export type StopWatchProps = {
   name?: string;
@@ -30,8 +30,6 @@ export type StopWatchXProps = {
  * @returns 
  */
 const StopWatch = ({ time, isRest }: StopWatchXProps) => {
-  console.log(isRest);
-
   const setttingTimeSeconds = isRest ? TIME_TASK_FOCUS : TIME_REST;
   const [seconds, setSeconds] = useState(setttingTimeSeconds);
   const [delay, setDelay] = useState(ONE_SECOND);
