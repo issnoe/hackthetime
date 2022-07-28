@@ -19,6 +19,8 @@ import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts'
 import styles from './styles.module.css'
 import { CheckboxCube } from './components/checkbox/Checkbox';
+import { useSelector } from 'react-redux';
+import { AppState } from './config/rootReducer';
 
 var gaugeOptions = {
   chart: {
@@ -130,6 +132,20 @@ const App = (props: any) => {
   const [toogle, toogleSider] = useState(true);
   const [sizeStopWatcher, setSizeStopWatcher] = useState('small');
   const changeSize = (size) => setSizeStopWatcher(size);
+  const getCicleStatus = () => {
+    return localStorage.getItem("done");
+  }
+  const isLastTaskRest = (storeOldDoneList) => {
+    if (storeOldDoneList == '' || storeOldDoneList == null) return false
+    const storeOldDoneListJson = JSON.parse(storeOldDoneList);
+    const lastElement = storeOldDoneListJson[0];
+    return (lastElement.project === "rest" ? false : true)
+  }
+  const getLastTaskDetails = (storeOldDoneList) => {
+    const storeOldDoneListJson = JSON.parse(storeOldDoneList);
+    const lastElement = storeOldDoneListJson[0];
+    return lastElement
+  }
   const whatAreYouDoing = (payload) => {
     if (payload.action === "NEW") {
       localStorage.setItem("task", payload.taskId);
@@ -138,8 +154,22 @@ const App = (props: any) => {
 
       const storege = localStorage.getItem("list");
       const id = localStorage.getItem("task");
+      const storeOldDoneList = getCicleStatus();
 
-      if (storege) {
+      if (isLastTaskRest(storeOldDoneList)) {
+        /**
+         * 
+         */
+        let storeOldDoneListJson = []
+        if (storeOldDoneList) {
+          storeOldDoneListJson = JSON.parse(storeOldDoneList);
+        }
+
+        localStorage.setItem("done", JSON.stringify([{ time: new Date, project: "rest", }, ...storeOldDoneListJson]))
+      }
+
+
+      else if (storege) {
         const lista = JSON.parse(storege);
 
         const done = lista.find((element) => {
@@ -147,7 +177,7 @@ const App = (props: any) => {
             return element
           }
         })
-        const storeOldDoneList = localStorage.getItem("done");
+
         let storeOldDoneListJson = []
         if (storeOldDoneList) {
           storeOldDoneListJson = JSON.parse(storeOldDoneList);
@@ -159,12 +189,22 @@ const App = (props: any) => {
 
     }
   };
-  const stopWatch = <StopWatch />;
+  const time = useSelector<AppState, any>((state) => state.time);
+  console.log(time);
+
+
+  const stopWatch = function () {
+
+    const storeOldDoneList = getCicleStatus();
+    return <StopWatch time={time} isRest={isLastTaskRest(storeOldDoneList)} />;
+
+  }
+  //const stopWatchRest = <StopWatch time={time} />;
 
   return (
     <>
       <TimerDetailsProvider value={{ sizeStopWatcher, changeSize, whatAreYouDoing }}>
-        {stopWatch}
+        {stopWatch()}
         <Wrapper>
           <div className={styles.wrapper}>
             <header className={styles.mainhead}>

@@ -1,17 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { TimerDetails } from '../../../contexts/Timer';
 import { PlayBeep } from '../../../libs/Sound';
+import { TimeState } from '../../../modules/time';
 import { useInterval } from '../custom-hooks';
 import './stop-watch.css';
-const SETTIME = 1800;
+/**
+ * 1800 => 30 min
+ * 300 => 5 min
+ */
+const TIME_TASK_FOCUS = 10;// => 30 minutos
+const TIME_REST = 5;
 const ONE_SECOND = 1000;
 export type StopWatchProps = {
   name?: string;
   size?: string;
 };
-
-const StopWatch = () => {
-  const [seconds, setSeconds] = useState(SETTIME);
+/**
+ * 
+ * @param time 
+ * @description ´
+ *  - identificar ciclo
+ *  - ["",""]
+ *  - interval 
+ * 
+ * @returns 
+ */
+const StopWatch = (time: any, isRest: boolean) => {
+  const setttingTimeSeconds = !isRest ? TIME_TASK_FOCUS : TIME_REST;
+  const [seconds, setSeconds] = useState(setttingTimeSeconds);
   const [delay, setDelay] = useState(ONE_SECOND);
 
   const { sizeStopWatcher, changeSize, whatAreYouDoing } = useContext(TimerDetails);
@@ -19,13 +35,12 @@ const StopWatch = () => {
   useInterval(() => {
     setSeconds(seconds - 1);
     document.title = transformSecondsToClock(seconds)
-    if (seconds < 1) {
+    if (seconds == 1) {
       PlayBeep()
-
     }
     if (seconds == 0) {
       setDelay(ONE_SECOND);
-      setSeconds(SETTIME);
+      setSeconds(setttingTimeSeconds);
       whatAreYouDoing({ action: "UPDATE" })
     }
   }, delay);
@@ -47,12 +62,11 @@ const StopWatch = () => {
     <div>
       <div className={`clock ${sizeStopWatcher} onwork`}>
         {transformSecondsToClock(seconds)}
+        <p style={{ fontSize: '1rem' }}>{time.time.description}</p>
         <button
           className="button-collapce"
           onClick={() => {
             const s = sizeStopWatcher === 'small' ? 'full-screen' : 'small';
-            console.log(sizeStopWatcher, s);
-
             changeSize(s);
           }}
         >
@@ -75,7 +89,7 @@ const StopWatch = () => {
         <button
           onClick={() => {
             setDelay(ONE_SECOND);
-            setSeconds(SETTIME);
+            setSeconds(setttingTimeSeconds);
           }}
         >
           STOP

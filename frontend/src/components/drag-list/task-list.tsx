@@ -4,6 +4,8 @@ import { TimerDetails } from "../../contexts/Timer";
 import { create_UUID } from "../../utils";
 import Checkbox, { CheckboxCube, CheckboxSwitch } from "../checkbox/Checkbox";
 import styles from './task-list.module.css';
+import { useDispatch } from 'react-redux';
+import { updateTaskFocusRequestAction_ } from "../../modules/time";
 
 
 function Student({ student }) {
@@ -57,8 +59,8 @@ const initialTask = {
 function TasksList() {
   const [characters, updateCharacters] = useState([]);
   const [task, setTask] = useState(initialTask);
+  const [showListDone, setShowListDone] = useState(false);
   const { whatAreYouDoing } = useContext(TimerDetails);
-
   useEffect(() => {
     const storege = localStorage.getItem("list");
     if (storege) {
@@ -146,7 +148,21 @@ function TasksList() {
     </div>
   }
 
+  function renderListDone(characters) {
+    if (!showListDone) {
+      return null
+    }
+    return characters.filter((e: ITasks) => e.status == true).map((task: ITasks, index) => {
+      const { id, description, pomodoro, status } = task;
+      return <ul key={index + '_ul_box'} className={styles.characters}><BoxElement provided={null} task={task} />
+      </ul>
+
+    })
+
+  }
   function BoxElement({ provided, task }) {
+    const dispatch = useDispatch();
+    const setTaskFocus = (task: any) => dispatch(updateTaskFocusRequestAction_(task));
     const childElement = <><BoxCheckBox status={task.status} id={task.id} />
       <div style={{
         flex: 10,
@@ -158,8 +174,14 @@ function TasksList() {
       {renderButtonPomodoros(task, true)}</>
     if (provided) {
       return <li
+        /*  onClick={() => {
+           setTaskFocus(task)
+           console.log("task", JSON.stringify(task, null, 2))
+ 
+         }} */
         onDoubleClick={() => {
-          whatAreYouDoing({ action: "NEW", taskId: task.id })
+          setTaskFocus(task)
+          // whatAreYouDoing({ action: "NEW", taskId: task.id })
         }}
         key={task.id}
         ref={provided.innerRef}
@@ -211,9 +233,7 @@ function TasksList() {
       </form>
 
       <div style={{ margin: "1rem 2px" }}>
-        <CheckboxCube id="toogle-list-cube" status={true} onChange={() => {
-
-        }} />
+        <CheckboxCube id="toogle-list-cube" status={true} onChange={() => setShowListDone(!showListDone)} />
       </div>
 
 
@@ -231,7 +251,7 @@ function TasksList() {
                 return (
                   <Draggable key={task.id} draggableId={task.id} index={index}>
                     {(provided) => (
-                      <BoxElement provided={provided} task={task} />
+                      <BoxElement key={task.id} provided={provided} task={task} />
                       /*      <li
                              onDoubleClick={() => {
                                whatAreYouDoing({ action: "NEW", taskId: task.id })
@@ -261,14 +281,7 @@ function TasksList() {
         </Droppable>
 
       </DragDropContext>
-      {
-        characters.filter((e: ITasks) => e.status == true).map((task: ITasks, index) => {
-          const { id, description, pomodoro, status } = task;
-          return <ul className={styles.characters}><BoxElement provided={null} task={task} />
-          </ul>
-
-        })
-      }
+      {renderListDone(characters)}
 
     </div >
   );
