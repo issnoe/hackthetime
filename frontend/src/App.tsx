@@ -152,14 +152,14 @@ const App = (props: any) => {
     }
     if (payload.action === "UPDATE") {
 
+      /**
+       * Replace with services do handle object on graphql
+       */
       const storege = localStorage.getItem("list");
       const id = localStorage.getItem("task");
       const storeOldDoneList = getCicleStatus();
 
       if (isLastTaskRest(storeOldDoneList)) {
-        /**
-         * 
-         */
         let storeOldDoneListJson = []
         if (storeOldDoneList) {
           storeOldDoneListJson = JSON.parse(storeOldDoneList);
@@ -167,11 +167,8 @@ const App = (props: any) => {
 
         localStorage.setItem("done", JSON.stringify([{ time: new Date, project: "rest", }, ...storeOldDoneListJson]))
       }
-
-
       else if (storege) {
         const lista = JSON.parse(storege);
-
         const done = lista.find((element) => {
           if (element.id === id) {
             return element
@@ -184,6 +181,7 @@ const App = (props: any) => {
         }
         localStorage.setItem("done", JSON.stringify([{ time: new Date, ...done }, ...storeOldDoneListJson]))
       }
+      toogleSider(! )
     }
     if (payload.action === "UPDATE_STATUS") {
 
@@ -194,7 +192,7 @@ const App = (props: any) => {
 
 
   const stopWatch = function () {
-
+    debugger
     const storeOldDoneList = getCicleStatus();
     return <StopWatch time={time} isRest={isLastTaskRest(storeOldDoneList)} />;
 

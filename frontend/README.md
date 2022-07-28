@@ -34,3 +34,20 @@ console.log(lastelement.project === "rest" ? "lets work" : "lets take a break");
 a 
 */
 ```
+
+## Voice text
+
+https://app.uberduck.ai/speak#mode=tts-basic&voice=rick-sanchez
+
+Let's take a break body!, go out to get some fun or make some funny. You have 5 minutes remember
+
+https://app.uberduck.ai/speak#mode=tts-basic&voice=dexters-mom
+Let's take a break!... go out to get some fun or make some funny... You have five minutes remember?
+
+https://app.uberduck.ai/speak#mode=tts-basic&voice=ms-keane
+Come on!... You have to start working now.
+
+## Encode Audio
+
+https://base64.guru/converter/encode/audio
+type base64

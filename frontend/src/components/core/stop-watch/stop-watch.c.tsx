@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { TimerDetails } from '../../../contexts/Timer';
-import { PlayBeep } from '../../../libs/Sound';
+import { PlayBeep, PlayBeep_StartWork, PlayBeep_TakeRest } from '../../../libs/Sound';
 import { TimeState } from '../../../modules/time';
 import { useInterval } from '../custom-hooks';
 import './stop-watch.css';
@@ -15,6 +15,10 @@ export type StopWatchProps = {
   name?: string;
   size?: string;
 };
+export type StopWatchXProps = {
+  time?: any;
+  isRest: boolean;
+};
 /**
  * 
  * @param time 
@@ -25,8 +29,10 @@ export type StopWatchProps = {
  * 
  * @returns 
  */
-const StopWatch = (time: any, isRest: boolean) => {
-  const setttingTimeSeconds = !isRest ? TIME_TASK_FOCUS : TIME_REST;
+const StopWatch = ({ time, isRest }: StopWatchXProps) => {
+  console.log(isRest);
+
+  const setttingTimeSeconds = isRest ? TIME_TASK_FOCUS : TIME_REST;
   const [seconds, setSeconds] = useState(setttingTimeSeconds);
   const [delay, setDelay] = useState(ONE_SECOND);
 
@@ -36,7 +42,11 @@ const StopWatch = (time: any, isRest: boolean) => {
     setSeconds(seconds - 1);
     document.title = transformSecondsToClock(seconds)
     if (seconds == 1) {
-      PlayBeep()
+      if (isRest) {
+        PlayBeep_StartWork()
+      } else {
+        PlayBeep_TakeRest()
+      }
     }
     if (seconds == 0) {
       setDelay(ONE_SECOND);
@@ -62,7 +72,8 @@ const StopWatch = (time: any, isRest: boolean) => {
     <div>
       <div className={`clock ${sizeStopWatcher} onwork`}>
         {transformSecondsToClock(seconds)}
-        <p style={{ fontSize: '1rem' }}>{time.time.description}</p>
+        <p style={{ fontSize: '1rem' }}>{
+          time.description}</p>
         <button
           className="button-collapce"
           onClick={() => {
